@@ -20,5 +20,7 @@
     <string name="signup_error_message">Make sure your Username, email and password are entered.</string>
     <string name="title_signup_error">Oops!!!</string>
     <string name="signup_password_mismatch_message">Your password and confirmation do not match</string>
+    <string name="login_error_message">Make sure you enter your username and password.</string>
+    <string name="action_logout">Logout</string>
 
 </resources>
