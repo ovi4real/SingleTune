@@ -37,11 +37,12 @@ public class LoginActivity extends Activity {
             }
         });
 
-        mUsername = (EditText) findViewById(R.id.username_field);
-        mPassword = (EditText) findViewById(R.id.password_field);
-        mLoginButton = (Button) findViewById(R.id.signup_button);
+        mUsername = (EditText) findViewById(R.id.login_username_field);
+        mPassword = (EditText) findViewById(R.id.login_password_field);
+        mLoginButton = (Button) findViewById(R.id.login_button);
 
-//        Signup button onClick listener
+        // Login user
+
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,19 +53,16 @@ public class LoginActivity extends Activity {
                 password = password.trim();
 
                 if (username.isEmpty() || password.isEmpty()) {
-                    // TODO: Turn fields to red highlights
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                     builder.setMessage(R.string.login_error_message)
-                            .setTitle(R.string.title_signup_error)
+                            .setTitle(R.string.login_error_label)
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 } else {
-                    // Login users
                     ParseUser.logInInBackground(username, password, new LogInCallback() {
                         @Override
                         public void done(ParseUser user, ParseException e) {
-
                             if (e == null) {
                                 // Success
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -72,23 +70,20 @@ public class LoginActivity extends Activity {
                                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                             } else {
-
-                                /* TODO Clean up returned error message */
+                                 /* TODO Clean up returned error message */
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage(e.getMessage())
                                         .setTitle(R.string.title_signup_error)
                                         .setPositiveButton(android.R.string.ok, null);
                                 AlertDialog dialog = builder.create();
                                 dialog.show();
-
                             }
-
                         }
                     });
                 }
-
             }
         });
+
     }
 
 }
