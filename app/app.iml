@@ -70,9 +70,12 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="droidux-trial-2.1.1" level="project" />
     <orderEntry type="library" exported="" name="Parse-1.4.2" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-v13-19.1.0" level="project" />
+    <orderEntry type="module" module-name="library" exported="" />
+    <orderEntry type="module" module-name="AndroidBootstrap" exported="" />
   </component>
 </module>
 

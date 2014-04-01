@@ -1,19 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pixel.singletune.app" >
+    package="com.pixel.singletune.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name="com.pixel.singletune.app.SingleTuneApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name=".SingleTuneApplication">
+        android:theme="@style/Theme.St">
+        <compatible-screens>
+            <!-- all small size screens -->
+            <screen
+                android:screenDensity="ldpi"
+                android:screenSize="small" />
+            <screen
+                android:screenDensity="mdpi"
+                android:screenSize="small" />
+            <screen
+                android:screenDensity="hdpi"
+                android:screenSize="small" />
+            <screen
+                android:screenDensity="xhdpi"
+                android:screenSize="small" />
+            <!-- all normal size screens -->
+            <screen
+                android:screenDensity="ldpi"
+                android:screenSize="normal" />
+            <screen
+                android:screenDensity="mdpi"
+                android:screenSize="normal" />
+            <screen
+                android:screenDensity="hdpi"
+                android:screenSize="normal" />
+            <screen
+                android:screenDensity="xhdpi"
+                android:screenSize="normal" />
+        </compatible-screens>
+
         <activity
             android:name="com.pixel.singletune.app.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,15 +51,23 @@
         </activity>
         <activity
             android:name="com.pixel.singletune.app.LoginActivity"
-            android:label="@string/title_activity_login" >
-        </activity>
+            android:label="@string/title_activity_login"></activity>
         <activity
             android:name="com.pixel.singletune.app.SignupActivity"
             android:label="@string/title_activity_signup"
-            android:parentActivityName="com.pixel.singletune.app.LoginActivity" >
+            android:parentActivityName="com.pixel.singletune.app.LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="LoginActivity" />
+        </activity>
+        <activity
+            android:name="com.pixel.singletune.app.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName="com.pixel.singletune.app.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
         </activity>
     </application>
 

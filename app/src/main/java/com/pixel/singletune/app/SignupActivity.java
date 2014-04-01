@@ -5,9 +5,10 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
+import com.cengalabs.flatui.FlatUI;
+import com.cengalabs.flatui.views.FlatButton;
+import com.cengalabs.flatui.views.FlatEditText;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -15,22 +16,24 @@ import com.parse.SignUpCallback;
 
 public class SignupActivity extends Activity {
 
-    protected EditText mUsername;
-    protected EditText mEmail;
-    protected EditText mPassword;
-    protected EditText mPasswordConfirmation;
-    protected Button mSignupButton;
+    protected FlatEditText mUsername;
+    protected FlatEditText mEmail;
+    protected FlatEditText mPassword;
+    protected FlatEditText mPasswordConfirmation;
+    protected FlatButton mSignupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        mUsername = (EditText) findViewById(R.id.username_field);
-        mEmail = (EditText) findViewById(R.id.email_field);
-        mPassword = (EditText) findViewById(R.id.password_field);
-        mPasswordConfirmation = (EditText) findViewById(R.id.password_confirmation_field);
-        mSignupButton = (Button) findViewById(R.id.signup_button);
+        FlatUI.setDefaultTheme(FlatUI.SAND);
+
+        mUsername = (FlatEditText) findViewById(R.id.username_field);
+        mEmail = (FlatEditText) findViewById(R.id.email_field);
+        mPassword = (FlatEditText) findViewById(R.id.password_field);
+        mPasswordConfirmation = (FlatEditText) findViewById(R.id.password_confirmation_field);
+        mSignupButton = (FlatButton) findViewById(R.id.signup_button);
 
 //        Signup button onClick listener
         mSignupButton.setOnClickListener(new View.OnClickListener() {

@@ -32,7 +32,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new TimelineFragment();
             case 1:
-                return new ProfileFragment();
+                return new PopularFragment();
         }
         return null;
     }

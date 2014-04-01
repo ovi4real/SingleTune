@@ -3,10 +3,10 @@
 
     <string name="app_name">SingleTune</string>
     <string name="title_section1">Timeline</string>
-    <string name="title_section2">Profile</string>
+    <string name="title_section2">Popular</string>
     <string name="title_section3">Section 3</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">Welcome to SingleTune</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_signup">Signup</string>
     <string name="signup_textview_label">Signup</string>
@@ -24,5 +24,13 @@
     <string name="action_logout">Logout</string>
     <string name="login_error_label">Yikes!!!</string>
     <string name="no_timeline_item_warning">No activities on your Timeline.</string>
+    <string name="action_userProfile_title">Profile</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="profile_image_desc">Profile Image</string>
+    <string name="edit_profile_button_text">Edit Profile</string>
+    <string name="dummy_meta_count_1">338</string>
+    <string name="tune_count_label_plural">Tunes</string>
+    <string name="friends_count_label_plural">Friends</string>
+    <string name="followers_count_label_plural">Followers</string>
 
 </resources>

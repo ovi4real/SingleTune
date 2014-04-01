@@ -5,10 +5,12 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.cengalabs.flatui.views.FlatButton;
+import com.cengalabs.flatui.views.FlatEditText;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -17,15 +19,18 @@ import com.parse.ParseUser;
 public class LoginActivity extends Activity {
 
 
-    protected EditText mUsername;
-    protected EditText mPassword;
-    protected Button mLoginButton;
+    protected FlatEditText mUsername;
+    protected FlatEditText mPassword;
+    protected FlatButton mLoginButton;
 
     protected TextView mSignupTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
         mSignupTextView = (TextView) findViewById(R.id.signup_text_field);
@@ -37,9 +42,9 @@ public class LoginActivity extends Activity {
             }
         });
 
-        mUsername = (EditText) findViewById(R.id.login_username_field);
-        mPassword = (EditText) findViewById(R.id.login_password_field);
-        mLoginButton = (Button) findViewById(R.id.login_button);
+        mUsername = (FlatEditText) findViewById(R.id.login_username_field);
+        mPassword = (FlatEditText) findViewById(R.id.login_password_field);
+        mLoginButton = (FlatButton) findViewById(R.id.login_button);
 
         // Login user
 
