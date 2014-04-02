@@ -141,9 +141,9 @@
                 </dimen>
                 <dimen name="bthumbnail_rounded_corner_radius" >3dp
                 </dimen>
-                <dimen name="padding_small" >8dp
-                </dimen>
                 <dimen name="bbuton_rounded_corner_radius" >5dp
+                </dimen>
+                <dimen name="padding_small" >8dp
                 </dimen>
                 <dimen name="activity_vertical_margin" >16dp
                 </dimen>
@@ -194,15 +194,15 @@
                 </color>
                 <color name="bbutton_success_pressed_edge" >#ff398439
                 </color>
-                <color name="bbutton_warning" >#fff0ad4e
-                </color>
                 <color name="black" >#ff000000
+                </color>
+                <color name="bbutton_warning" >#fff0ad4e
                 </color>
                 <color name="bbutton_edittext_disabled" >#ffe0e0e0
                 </color>
-                <color name="bbutton_danger_pressed_edge" >#ffac2925
-                </color>
                 <color name="bbutton_danger_pressed" >#ffd2322d
+                </color>
+                <color name="bbutton_danger_pressed_edge" >#ffac2925
                 </color>
                 <color name="bbutton_default_disabled" >#a5ffffff
                 </color>

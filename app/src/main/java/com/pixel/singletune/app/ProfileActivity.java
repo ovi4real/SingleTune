@@ -1,20 +1,34 @@
 package com.pixel.singletune.app;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
+import android.widget.TextView;
 
+import com.cengalabs.flatui.views.FlatButton;
 import com.parse.ParseUser;
 
 
 public class ProfileActivity extends Activity {
+    protected FlatButton mEditProfileButton;
+    protected TextView mTuneCountMeta;
+    protected TextView mFriendsCountMeta;
+    protected TextView mFollowersCountMeta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        // Find various textviews to modify
+        mTuneCountMeta = (TextView) findViewById(R.id.tune_count_meta);
+        mFriendsCountMeta = (TextView) findViewById(R.id.friends_count_meta);
+        mFollowersCountMeta = (TextView) findViewById(R.id.followers_count_meta);
+
     }
 
 
@@ -23,6 +37,13 @@ public class ProfileActivity extends Activity {
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.profile, menu);
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
 

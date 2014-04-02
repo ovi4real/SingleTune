@@ -3,9 +3,14 @@
     tools:context="com.pixel.singletune.app.MainActivity">
     <!--TODO: refactor out the login to an options  activity -->
     <item
+        android:id="@+id/search"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@drawable/ic_action_search"
+        android:showAsAction="collapseActionView|ifRoom"
+        android:title="@string/search_title" />
+    <item
         android:id="@+id/action_profile"
         android:icon="@drawable/ic_action_user"
-        android:orderInCategory="100"
         android:showAsAction="always"
         android:title="@string/action_userProfile_title" />
     <item
