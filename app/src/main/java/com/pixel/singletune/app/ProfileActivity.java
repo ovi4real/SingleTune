@@ -13,21 +13,22 @@ import android.widget.TextView;
 import com.cengalabs.flatui.views.FlatButton;
 import com.parse.ParseUser;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 
 public class ProfileActivity extends Activity {
-    protected FlatButton mEditProfileButton;
-    protected TextView mTuneCountMeta;
-    protected TextView mFriendsCountMeta;
-    protected TextView mFollowersCountMeta;
+    @InjectView(R.id.edit_profile_button) FlatButton mEditProfileButton;
+    @InjectView(R.id.tune_count_meta) TextView mTuneCountMeta;
+    @InjectView(R.id.friends_count_meta) TextView mFriendsCountMeta;
+    @InjectView(R.id.followers_count_meta) TextView mFollowersCountMeta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         // Find various textviews to modify
-        mTuneCountMeta = (TextView) findViewById(R.id.tune_count_meta);
-        mFriendsCountMeta = (TextView) findViewById(R.id.friends_count_meta);
-        mFollowersCountMeta = (TextView) findViewById(R.id.followers_count_meta);
+        ButterKnife.inject(this);
 
     }
 
@@ -37,13 +38,6 @@ public class ProfileActivity extends Activity {
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.profile, menu);
-        // Associate searchable configuration with the SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
 

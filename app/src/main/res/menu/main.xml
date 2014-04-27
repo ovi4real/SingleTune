@@ -4,9 +4,8 @@
     <!--TODO: refactor out the login to an options  activity -->
     <item
         android:id="@+id/search"
-        android:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/ic_action_search"
-        android:showAsAction="collapseActionView|ifRoom"
+        android:showAsAction="always"
         android:title="@string/search_title" />
     <item
         android:id="@+id/action_profile"

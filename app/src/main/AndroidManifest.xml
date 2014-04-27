@@ -1,58 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pixel.singletune.app">
+    package="com.pixel.singletune.app" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <!--
+      IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
+      to match your app's package name + ".permission.C2D_MESSAGE".
+    -->
+    <permission android:protectionLevel="signature"
+        android:name="com.pixel.singletune.app.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.pixel.singletune.app.permission.C2D_MESSAGE" />
 
     <application
         android:name="com.pixel.singletune.app.SingleTuneApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.St">
-        <compatible-screens>
-
-        <!-- all small size screens -->
-            <screen
-                android:screenDensity="ldpi"
-                android:screenSize="small" />
-            <screen
-                android:screenDensity="mdpi"
-                android:screenSize="small" />
-            <screen
-                android:screenDensity="hdpi"
-                android:screenSize="small" />
-            <screen
-                android:screenDensity="xhdpi"
-                android:screenSize="small" />
-            <!-- all normal size screens -->
-            <screen
-                android:screenDensity="ldpi"
-                android:screenSize="normal" />
-            <screen
-                android:screenDensity="mdpi"
-                android:screenSize="normal" />
-            <screen
-                android:screenDensity="hdpi"
-                android:screenSize="normal" />
-            <screen
-                android:screenDensity="xhdpi"
-                android:screenSize="normal" />
-        </compatible-screens>
+        android:theme="@style/Theme.St" >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name="com.pixel.singletune.app.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name="com.pixel.singletune.app.LoginActivity"
@@ -60,8 +45,8 @@
         <activity
             android:name="com.pixel.singletune.app.SignupActivity"
             android:label="@string/title_activity_signup"
-            android:parentActivityName="com.pixel.singletune.app.LoginActivity">
-        <meta-data
+            android:parentActivityName="com.pixel.singletune.app.LoginActivity" >
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="LoginActivity" />
         </activity>
@@ -69,22 +54,46 @@
             android:name="com.pixel.singletune.app.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:parentActivityName="com.pixel.singletune.app.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
+        </activity>
+        <activity
+            android:name="com.pixel.singletune.app.SearchActivity"
+            android:label="@string/title_activity_search_results"
+            android:parentActivityName="com.pixel.singletune.app.MainActivity" >
             <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
         </activity>
         <activity
-            android:name="com.pixel.singletune.app.SearchResultsActivity"
-            android:label="@string/title_activity_search_results"
-            android:parentActivityName="com.pixel.singletune.app.MainActivity">
-        <meta-data
+            android:name="com.pixel.singletune.app.NotificationsActivity"
+            android:label="@string/title_activity_notifications"
+            android:parentActivityName="com.pixel.singletune.app.MainActivity" >
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
         </activity>
+        <service android:name="com.parse.PushService" />
+        <receiver android:name="com.parse.ParseBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <!--
+                  IMPORTANT: Change "com.parse.starter" to match your app's package name.
+                -->
+                <category android:name="com.pixel.singletune.app" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

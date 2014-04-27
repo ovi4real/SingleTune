@@ -113,6 +113,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         } else if (id == R.id.action_profile) {
             Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
+        } else if (id == R.id.search){
+            Intent intent = new Intent(this, SearchActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
