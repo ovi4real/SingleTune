@@ -1,6 +1,6 @@
 package com.pixel.singletune.app;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,9 +23,9 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class SearchActivity extends Activity {
+public class SearchActivity extends ListActivity {
 
-    protected String mUser = "user";
+    private ParseQueryAdapter<ParseUser> mainAdapter;
 
     @InjectView(R.id.search_editText) FlatEditText mSearchText;
     @InjectView(R.id.search_button) ImageButton mSearchButton;
@@ -39,35 +39,47 @@ public class SearchActivity extends Activity {
         ButterKnife.inject(this);
 
         final String  username = mSearchText.getText().toString().trim();
-
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ParseUserQuery(username);
-                Log.d("SingleTune","Done");
+                QueryUser(username);
+
+//                mainAdapter.setTextKey("username");
+//                mainAdapter.setImageKey("photo");
+//
+//                setListAdapter(mainAdapter);
             }
         });
-
     }
 
-    private void ParseUserQuery(final String username) {
-        ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(
-                SearchActivity.this, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+    private void QueryUser(final String username) {
+        ParseQuery query = ParseUser.getQuery();
+        query.whereContains("username", username);
+        query.setLimit(1000);
+        query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public ParseQuery<ParseObject> create() {
-                ParseQuery query = new ParseQuery("User");
-                query.whereMatches("username",username);
-                query.orderByDescending("username");
-                query.setLimit(1000);
-                Log.d("SingleTune", String.valueOf(query));
-                return query;
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if(e == null){
+                    Log.d("singleTune", "Nothing found");
+                }else{
+                    Log.d("singleTune", "I got " + parseObjects.size() + " records back.");
+                }
+
             }
         });
-        adapter.setTextKey("username");
-        ListView listview = (ListView) findViewById(R.id.friends_listview);
-        listview.setAdapter(adapter);
-    }
 
+//        mainAdapter = new ParseQueryAdapter<ParseUser>(this, new ParseQueryAdapter.QueryFactory<ParseUser>() {
+//            @Override
+//            public ParseQuery<ParseUser> create() {
+//                ParseQuery query = new ParseQuery("User");
+//                query.whereMatches("username",username);
+//                query.orderByDescending("username");
+//                query.setLimit(1000);
+//                Log.d("SingleTune", String.valueOf(query));
+//                return query;
+//            }
+//        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

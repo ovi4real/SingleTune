@@ -5,6 +5,7 @@ import android.app.Application;
 import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseInstallation;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.PushService;
 
@@ -18,6 +19,7 @@ public class SingleTuneApplication extends Application {
     public void onCreate(){
         super.onCreate();
     //TODO: Remember to change these keys!!!
+        ParseObject.registerSubclass(Song.class);
         Parse.initialize(this, "rvPIzES8Mg0ChzNaZtrJ6udORV3ggajrjUlZMZ8e", "4WtUhM0JDyW1zmXlbjrW7HDbFthNtqBI2F44bvj2");
 //        ParseFacebookUtils.initialize("297125393789149");
         PushService.setDefaultPushCallback(this, NotificationsActivity.class);
