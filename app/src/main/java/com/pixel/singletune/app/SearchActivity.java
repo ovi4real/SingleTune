@@ -7,12 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.cengalabs.flatui.views.FlatEditText;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import java.util.List;
@@ -27,33 +29,44 @@ public class SearchActivity extends Activity {
 
     @InjectView(R.id.search_editText) FlatEditText mSearchText;
     @InjectView(R.id.search_button) ImageButton mSearchButton;
+    protected final String username = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
         ButterKnife.inject(this);
 
-        mSearchButton.setOnClickListener(new View.OnClickListener(){
+        final String  username = mSearchText.getText().toString().trim();
 
+        mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ParseQuery query = ParseUser.getQuery();
-                query.whereStartsWith("username", String.valueOf(mSearchText));
-                query.findInBackground(new FindCallback<ParseObject>(){
-                    @Override
-                    public void done(List<ParseObject> parseObjects, ParseException e) {
-                        if (parseObjects == null) {
-                            Log.d("score", "The getFirst request failed.");
-                        } else {
-                            Log.d("score", "Retrieved the object.");
-                        }
-                    }
-                });
+                ParseUserQuery(username);
+                Log.d("SingleTune","Done");
             }
         });
+
     }
 
+    private void ParseUserQuery(final String username) {
+        ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(
+                SearchActivity.this, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+            @Override
+            public ParseQuery<ParseObject> create() {
+                ParseQuery query = new ParseQuery("User");
+                query.whereMatches("username",username);
+                query.orderByDescending("username");
+                query.setLimit(1000);
+                Log.d("SingleTune", String.valueOf(query));
+                return query;
+            }
+        });
+        adapter.setTextKey("username");
+        ListView listview = (ListView) findViewById(R.id.friends_listview);
+        listview.setAdapter(adapter);
+    }
 
 
     @Override

@@ -10,8 +10,12 @@ import com.cengalabs.flatui.FlatUI;
 import com.cengalabs.flatui.views.FlatButton;
 import com.cengalabs.flatui.views.FlatEditText;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
+import com.parse.PushService;
 import com.parse.SignUpCallback;
+
+import utils.LinkUserToInstallationHelper;
 
 
 public class SignupActivity extends Activity {
@@ -78,6 +82,14 @@ public class SignupActivity extends Activity {
                         public void done(ParseException e) {
                             if (e == null) {
                                 // Success
+
+                                LinkUserToInstallationHelper.LinkUserToInstallation.invoke();
+
+                                // Associate the device with a user
+                                ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+                                installation.put("user",ParseUser.getCurrentUser());
+                                installation.saveInBackground();
+
                                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

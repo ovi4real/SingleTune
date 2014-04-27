@@ -13,7 +13,10 @@ import com.cengalabs.flatui.views.FlatButton;
 import com.cengalabs.flatui.views.FlatEditText;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
+
+import utils.LinkUserToInstallationHelper;
 
 public class LoginActivity extends Activity {
 
@@ -69,6 +72,10 @@ public class LoginActivity extends Activity {
                         public void done(ParseUser user, ParseException e) {
                             if (e == null) {
                                 // Success
+
+                                // Associate the device with a user
+                                LinkUserToInstallationHelper.LinkUserToInstallation.invoke();
+
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
