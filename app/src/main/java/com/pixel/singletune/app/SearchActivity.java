@@ -22,6 +22,7 @@ import com.parse.ParseUser;
 import java.util.List;
 
 import adapters.StringArrayAdapter;
+import adapters.UserListAdapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -52,7 +53,6 @@ public class SearchActivity extends ListActivity {
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                ListView listView = (ListView)findViewById(R.id.search_result_list);
                 QueryUser(username);
             }
         });
@@ -74,13 +74,10 @@ public class SearchActivity extends ListActivity {
                     String[] usernames = new String[mUsers.size()];
                     int i = 0;
                     for(ParseUser user : mUsers){
-                        usernames[i] = user.getUsername();
+                        usernames[i] = user.getUsername().toString();
                         i++;
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                            SearchActivity.this,
-                            android.R.layout.simple_list_item_checked,
-                            usernames);
+                    UserListAdapter adapter = new UserListAdapter(SearchActivity.this, mUsers);
                     setListAdapter(adapter);
                 }
 

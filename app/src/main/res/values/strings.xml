@@ -36,5 +36,8 @@
     <string name="search_hint">Search for Friends</string>
     <string name="title_activity_search_results">SearchResultsActivity</string>
     <string name="title_activity_notifications">NotificationsActivity</string>
+    <string name="follow_button_text">Follow</string>
+    <string name="username_label">Username</string>
+    <string name="userAvaterPlaceholder">Placeholder for user avater</string>
 
 </resources>
