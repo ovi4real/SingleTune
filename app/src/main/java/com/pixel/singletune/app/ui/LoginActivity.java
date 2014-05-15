@@ -1,4 +1,4 @@
-package com.pixel.singletune.app;
+package com.pixel.singletune.app.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,10 +13,10 @@ import com.cengalabs.flatui.views.FlatButton;
 import com.cengalabs.flatui.views.FlatEditText;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
-import com.parse.ParseInstallation;
 import com.parse.ParseUser;
+import com.pixel.singletune.app.R;
 
-import utils.LinkUserToInstallationHelper;
+import com.pixel.singletune.app.utils.LinkUserToInstallationHelper;
 
 public class LoginActivity extends Activity {
 

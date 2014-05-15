@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.pixel.singletune.app.MainActivity">
+    tools:context="com.pixel.singletune.app.ui.MainActivity">
     <!--TODO: refactor out the login to an options  activity -->
     <item
         android:id="@+id/search"

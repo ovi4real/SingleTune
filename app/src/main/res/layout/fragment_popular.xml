@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pixel.singletune.app.MainActivity$PlaceholderFragment">
+    tools:context="com.pixel.singletune.app.ui.MainActivity$PlaceholderFragment">
     <!--TODO: Include a profile picture and info section before the ListView -->
     <!--TODO: The ListView should be for your own items-->
     <ListView

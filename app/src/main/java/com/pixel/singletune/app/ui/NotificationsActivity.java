@@ -1,4 +1,4 @@
-package com.pixel.singletune.app;
+package com.pixel.singletune.app.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.parse.ParseAnalytics;
+import com.pixel.singletune.app.R;
 
 public class NotificationsActivity extends Activity {
 

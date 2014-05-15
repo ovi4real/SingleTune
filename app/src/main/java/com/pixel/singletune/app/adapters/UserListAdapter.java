@@ -1,6 +1,7 @@
-package adapters;
+package com.pixel.singletune.app.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +33,13 @@ public class UserListAdapter extends ArrayAdapter<ParseUser> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         ViewHolder holder;
 
         if (convertView == null){
             convertView = LayoutInflater.from(mContext).inflate(R.layout.user_item, null);
             holder = new ViewHolder();
-            holder.avatar = (ImageView)convertView.findViewById(R.id.user_imageView);
+            holder.user_imageView    = (ImageView)convertView.findViewById(R.id.user_imageView);
             holder.usernameLabel = (TextView)convertView.findViewById(R.id.username_textView);
             holder.followButton = (FlatButton)convertView.findViewById(R.id.item_follow_button);
         }
@@ -46,14 +48,15 @@ public class UserListAdapter extends ArrayAdapter<ParseUser> {
         }
 
         ParseUser user = mParseUsers.get(position);
-        holder.avatar.setImageResource(R.drawable.ic_action_user);
+        Log.d("SingleTune", "Username from query is "+user.getUsername());
+        holder.user_imageView.setImageResource(R.drawable.ic_action_picture);
         holder.usernameLabel.setText(user.getString(ParseConstants.KEY_USERNAME));
 
-        return convertView;
+        return convertView                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
     }
-
+//
     private static class ViewHolder{
-        ImageView avatar;
+        ImageView user_imageView;
         TextView usernameLabel;
         FlatButton followButton;
     }

@@ -1,4 +1,4 @@
-package com.pixel.singletune.app;
+package com.pixel.singletune.app.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,10 +12,10 @@ import com.cengalabs.flatui.views.FlatEditText;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
-import com.parse.PushService;
 import com.parse.SignUpCallback;
+import com.pixel.singletune.app.R;
 
-import utils.LinkUserToInstallationHelper;
+import com.pixel.singletune.app.utils.LinkUserToInstallationHelper;
 
 
 public class SignupActivity extends Activity {

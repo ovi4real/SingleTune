@@ -31,7 +31,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.pixel.singletune.app.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,37 +40,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.pixel.singletune.app.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name="com.pixel.singletune.app.SignupActivity"
+            android:name=".ui.SignupActivity"
             android:label="@string/title_activity_signup"
-            android:parentActivityName="com.pixel.singletune.app.LoginActivity" >
+            android:parentActivityName=".ui.LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="LoginActivity" />
         </activity>
         <activity
-            android:name="com.pixel.singletune.app.ProfileActivity"
+            android:name=".ui.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:parentActivityName="com.pixel.singletune.app.MainActivity"
+            android:parentActivityName=".ui.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
         </activity>
         <activity
-            android:name="com.pixel.singletune.app.SearchActivity"
+            android:name=".ui.SearchActivity"
             android:label="@string/title_activity_search_results"
-            android:parentActivityName="com.pixel.singletune.app.MainActivity" >
+            android:parentActivityName=".ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
         </activity>
         <activity
-            android:name="com.pixel.singletune.app.NotificationsActivity"
+            android:name=".ui.NotificationsActivity"
             android:label="@string/title_activity_notifications"
-            android:parentActivityName="com.pixel.singletune.app.MainActivity" >
+            android:parentActivityName=".ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />

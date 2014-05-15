@@ -1,4 +1,4 @@
-package utils;
+package com.pixel.singletune.app.utils;
 
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;

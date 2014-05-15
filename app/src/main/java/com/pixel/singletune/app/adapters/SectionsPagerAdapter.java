@@ -1,4 +1,4 @@
-package com.pixel.singletune.app;
+package com.pixel.singletune.app.adapters;
 
 /**
  * Created by smith on 3/30/14.
@@ -8,6 +8,10 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.pixel.singletune.app.R;
+import com.pixel.singletune.app.fragments.PopularFragment;
+import com.pixel.singletune.app.fragments.TimelineFragment;
 
 import java.util.Locale;
 

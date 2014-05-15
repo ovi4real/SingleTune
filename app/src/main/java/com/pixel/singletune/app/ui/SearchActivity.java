@@ -1,28 +1,25 @@
-package com.pixel.singletune.app;
+package com.pixel.singletune.app.ui;
 
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import com.cengalabs.flatui.views.FlatEditText;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import java.util.List;
 
-import adapters.StringArrayAdapter;
-import adapters.UserListAdapter;
+import com.pixel.singletune.app.ParseConstants;
+import com.pixel.singletune.app.R;
+import com.pixel.singletune.app.adapters.UserListAdapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -36,7 +33,7 @@ public class SearchActivity extends ListActivity {
 
     protected List<ParseUser> mUsers;
 
-    protected final String username = null;
+    protected final String mUsername = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +46,23 @@ public class SearchActivity extends ListActivity {
         super.onResume();
         ButterKnife.inject(this);
 
-        final String  username = mSearchText.getText().toString().trim();
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                QueryUser(username);
+                QueryUser();
             }
         });
     }
 
-    private void QueryUser(final String username) {
+    private void QueryUser() {
+        FlatEditText gUname;
+        gUname = (FlatEditText)findViewById(R.id.search_editText);
+
+        String gUsername = gUname.getText().toString();
+
+        Log.d("singleTune", "Check for "+gUsername);
         ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("username", username);
+        query.whereContains("username", gUsername);
         query.orderByAscending(ParseConstants.KEY_USERNAME);
         query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseUser>() {
@@ -69,12 +71,11 @@ public class SearchActivity extends ListActivity {
                 if(e != null){
                     Log.d("singleTune", "Nothing found");
                 }else{
-                    Log.d("singleTune", "I got " + users.size() + " records back.");
                     mUsers = users;
                     String[] usernames = new String[mUsers.size()];
                     int i = 0;
                     for(ParseUser user : mUsers){
-                        usernames[i] = user.getUsername().toString();
+                        usernames[i] = user.getUsername();
                         i++;
                     }
                     UserListAdapter adapter = new UserListAdapter(SearchActivity.this, mUsers);

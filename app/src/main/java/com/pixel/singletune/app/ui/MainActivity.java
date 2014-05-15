@@ -1,4 +1,4 @@
-package com.pixel.singletune.app;
+package com.pixel.singletune.app.ui;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.view.MenuItem;
 
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
+import com.pixel.singletune.app.R;
+import com.pixel.singletune.app.adapters.SectionsPagerAdapter;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {

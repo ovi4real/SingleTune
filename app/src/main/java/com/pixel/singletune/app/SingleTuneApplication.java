@@ -3,13 +3,13 @@ package com.pixel.singletune.app;
 import android.app.Application;
 
 import com.parse.Parse;
-import com.parse.ParseFacebookUtils;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.PushService;
+import com.pixel.singletune.app.ui.NotificationsActivity;
 
-import utils.LinkUserToInstallationHelper;
+import com.pixel.singletune.app.utils.LinkUserToInstallationHelper;
 
 /**
  * Created by smith on 3/30/14.
