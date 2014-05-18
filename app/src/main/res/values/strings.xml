@@ -39,5 +39,7 @@
     <string name="follow_button_text">Follow</string>
     <string name="username_label">Username</string>
     <string name="userAvaterPlaceholder">Placeholder for user avater</string>
+    <string name="unfollow_button_text">Unfollow</string>
+    <string name="user_follow_text">Yay! %s is now following you!</string>
 
 </resources>

@@ -1,29 +1,36 @@
 package com.pixel.singletune.app.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-
-import com.cengalabs.flatui.views.FlatButton;
+import android.widget.ToggleButton;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.pixel.singletune.app.ParseConstants;
 import com.pixel.singletune.app.R;
 
 import java.util.List;
 
+import static com.pixel.singletune.app.R.string.user_follow_text;
+
 /**
  * Created by mrsmith on 4/28/14.
  */
 public class UserListAdapter extends ArrayAdapter<ParseUser> {
 
+    private static final String TAG = "Test";
     protected Context mContext;
     protected List<ParseUser> mParseUsers;
+    protected ParseRelation<ParseUser> mFriendsRelation;
+    protected ParseUser mCurrentUser;
+    protected Boolean followed;
+    protected Boolean followStatus;
+
+    protected List<ParseUser> mUsers;
 
     public UserListAdapter(Context context, List<ParseUser> users){
         super(context, R.layout.user_item, users);
@@ -36,28 +43,29 @@ public class UserListAdapter extends ArrayAdapter<ParseUser> {
 
         ViewHolder holder;
 
-        if (convertView == null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.user_item, null);
-            holder = new ViewHolder();
-            holder.user_imageView    = (ImageView)convertView.findViewById(R.id.user_imageView);
-            holder.usernameLabel = (TextView)convertView.findViewById(R.id.username_textView);
-            holder.followButton = (FlatButton)convertView.findViewById(R.id.item_follow_button);
-        }
-        else{
-            holder = (ViewHolder)convertView.getTag();
-        }
+        LayoutInflater inflater = (LayoutInflater.from(mContext));
+        final View rowView = inflater.inflate(R.layout.user_item, parent, false);
+        ImageView avatar = (ImageView) rowView.findViewById(R.id.avatar);
+        TextView usernameLabel = (TextView) rowView.findViewById(R.id.usernameLabel);
 
-        ParseUser user = mParseUsers.get(position);
-        Log.d("SingleTune", "Username from query is "+user.getUsername());
-        holder.user_imageView.setImageResource(R.drawable.ic_action_picture);
-        holder.usernameLabel.setText(user.getString(ParseConstants.KEY_USERNAME));
+        final ParseUser user = mParseUsers.get(position);
 
-        return convertView                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
+        avatar.setImageResource(R.drawable.ic_action_picture);
+        usernameLabel.setText(user.getUsername());
+
+
+        return rowView                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
     }
-//
+
+
+
+    //
     private static class ViewHolder{
-        ImageView user_imageView;
-        TextView usernameLabel;
-        FlatButton followButton;
+    }
+
+    public void refill(List<ParseUser> users){
+        mUsers.clear();
+        mUsers.addAll(users);
+        notifyDataSetChanged();
     }
 }

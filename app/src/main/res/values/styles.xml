@@ -10,6 +10,9 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_st</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_st</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.St</item>
+        <item name="android:listViewStyle">@style/Theme.St.light_orange_background</item>
+        <item name="android:gridViewStyle">@style/Theme.St.light_orange_background</item>
+
 
         <!-- Light.DarkActionBar specific -->
         <item name="android:actionBarWidgetTheme">@style/Theme.St.Widget</item>
@@ -58,6 +61,10 @@
     <style name="Theme.St.Widget" parent="@android:style/Theme.Holo">
         <item name="android:popupMenuStyle">@style/PopupMenu.St</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.St</item>
+    </style>
+
+    <style name="Theme.St.light_orange_background">
+        <item name="android:background">@color/light_blue</item>
     </style>
 
 </resources>
