@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.parse.FindCallback;
@@ -103,13 +104,9 @@ public class SearchActivity extends Activity {
                         usernames[i] = user.getUsername();
                         i++;
                     }
-                    if (mGridView == null){
-                        UserListAdapter adapter = new UserListAdapter(SearchActivity.this, mUsers);
-                        mGridView.setAdapter(adapter);
-                    }
-                    else {
-                        ((UserListAdapter)mGridView.getAdapter()).refill(mUsers);
-                    }
+
+                    UserListAdapter adapter = new UserListAdapter(SearchActivity.this, mUsers);
+                    mGridView.setAdapter(adapter);
 
                     friendFollowCheck();
                 }

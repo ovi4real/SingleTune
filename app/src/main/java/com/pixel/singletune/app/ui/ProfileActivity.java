@@ -1,15 +1,19 @@
 package com.pixel.singletune.app.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cengalabs.flatui.views.FlatButton;
 import com.parse.ParseUser;
 import com.pixel.singletune.app.R;
+import com.pixel.singletune.app.utils.MD5Util;
+import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -20,6 +24,11 @@ public class ProfileActivity extends Activity {
     @InjectView(R.id.tune_count_meta) TextView mTuneCountMeta;
     @InjectView(R.id.friends_count_meta) TextView mFriendsCountMeta;
     @InjectView(R.id.followers_count_meta) TextView mFollowersCountMeta;
+    @InjectView(R.id.profileAvatarImageView)
+    ImageView mProfileAvatar;
+
+    protected ParseUser mCurrentUser;
+    protected Context mContext = ProfileActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +36,18 @@ public class ProfileActivity extends Activity {
         setContentView(R.layout.activity_profile);
         // Find various textviews to modify
         ButterKnife.inject(this);
+
+        mCurrentUser = ParseUser.getCurrentUser();
+        String userEmail = mCurrentUser.getEmail().toLowerCase();
+
+        if (userEmail.equals("")){
+            mProfileAvatar.setImageResource(R.drawable.default_avatar);
+        }
+        else {
+            String hash = MD5Util.md5Hex(userEmail);
+            String gravatarUrl = "http://www.gravatar.com/avatar/"+ hash + "?s=272&d=404";
+            Picasso.with(mContext).load(gravatarUrl).placeholder(R.drawable.default_avatar).into(mProfileAvatar);
+        }
 
     }
 
