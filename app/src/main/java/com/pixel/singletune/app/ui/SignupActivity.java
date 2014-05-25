@@ -48,10 +48,10 @@ public class SignupActivity extends Activity {
                 String passwordConfirmation = mPasswordConfirmation.getText().toString();
                 String email = mEmail.getText().toString();
 
-                username = username.trim();
+                username = username.trim().toLowerCase();
                 password = password.trim();
                 passwordConfirmation = passwordConfirmation.trim();
-                email = email.trim();
+                email = email.trim().toLowerCase();
 
                 if (username.isEmpty() || password.isEmpty() || passwordConfirmation.isEmpty() || email.isEmpty()) {
                     // TODO: Turn fields to red highlights
