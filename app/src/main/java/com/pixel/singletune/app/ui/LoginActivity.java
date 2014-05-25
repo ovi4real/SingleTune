@@ -56,7 +56,7 @@ public class LoginActivity extends Activity {
                 String username = mUsername.getText().toString();
                 String password = mPassword.getText().toString();
 
-                username = username.trim();
+                username = username.trim().toLowerCase();
                 password = password.trim();
 
                 if (username.isEmpty() || password.isEmpty()) {
