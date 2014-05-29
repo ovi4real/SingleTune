@@ -41,5 +41,28 @@
     <string name="userAvaterPlaceholder">Placeholder for user avater</string>
     <string name="unfollow_button_text">Unfollow</string>
     <string name="user_follow_text">Yay! %s is now following you!</string>
+    <string name="title_activity_voice_recorder">VoiceRecorderActivity</string>
+    <string name="mp3_size_limit">File should NOT exceed 10mb.</string>
+    <string name="general_error">Sorry, an error occurred.</string>
+    <string name="error_opening_file">File Not Found!</string>
+    <string name="error_file_size_too_large">File must not exceed 10mb.</string>
+    <string name="addTuneMenu">Add Tune</string>
+    <string name="error_external_storage">There was a problem accessing your system\'s storage.</string>
+    <string name="SendTuneActivityLabel">Upload your tune!</string>
+    <string name="action_send_tune_title">Send</string>
+    <string name="error_selecting_file_title">We\'re sorry!</string>
+    <string name="error_selecting_file">There was an error with the file selected. Please select a different file.</string>
+    <string name="tune_title_hint">Title</string>
+    <string name="tune_desc_hint">Caption</string>
+    <string name="content_desc_tune_art">Tune Art</string>
+    <string name="empty_title_error_message">Please enter the title of your tune.</string>
+    <string name="empty_title_error_title">Title?</string>
+    <string name="success_message">Tune uploaded!</string>
+    <string name="error_sending_message">Sorry, we couldn\'t upload your tune.</string>
+    <string-array name="tune_choice">
+        <item>Record Voice Note</item>
+        <item>Choose Voice Note</item>
+        <item>Choose MP3</item>
+    </string-array>
 
 </resources>

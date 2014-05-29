@@ -1,19 +1,18 @@
 package com.pixel.singletune.app.ui;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -29,7 +28,8 @@ import java.util.List;
 import com.parse.SaveCallback;
 import com.pixel.singletune.app.ParseConstants;
 import com.pixel.singletune.app.R;
-import com.pixel.singletune.app.adapters.UserListAdapter;
+import com.pixel.singletune.app.adapters.UserAdapter;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -54,6 +54,7 @@ public class SearchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_search);
 
         mGridView = (GridView)findViewById(R.id.friendsGrid);
@@ -104,9 +105,13 @@ public class SearchActivity extends Activity {
                         usernames[i] = user.getUsername();
                         i++;
                     }
-
-                    UserListAdapter adapter = new UserListAdapter(SearchActivity.this, mUsers);
-                    mGridView.setAdapter(adapter);
+                    if(mGridView.getAdapter() == null){
+                        UserAdapter adapter = new UserAdapter(SearchActivity.this, mUsers);
+                        mGridView.setAdapter(adapter);
+                    }
+                    else {
+                        ((UserAdapter)mGridView.getAdapter()).refill(mUsers);
+                    }
 
                     friendFollowCheck();
                 }
@@ -163,17 +168,29 @@ public class SearchActivity extends Activity {
         Boolean followed;
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            ImageView checkAvatarView = (ImageView)view.findViewById(R.id.selectedAvatarImageView);
 //            TODO: Remember to use overlay image
         if (mGridView.isItemChecked(i)) {
 //            // add the friend
             mFriendsRelation.add(mUsers.get(i));
             followed = true;
+
+            // Add Checkmark
+            checkAvatarView.setVisibility(View.VISIBLE);
+
+            // Send Push Notification
             sendPushNotification(mUsers.get(i).getObjectId(), followed);
+            Log.d(TAG, "Checked");
         }
         else {
             // remove the friend
             mFriendsRelation.remove(mUsers.get(i));
             followed = false;
+
+            // Remove checkmark
+            checkAvatarView.setVisibility(View.INVISIBLE);
+
+            // Send push notification
             sendPushNotification(mUsers.get(i).getObjectId(), followed);
         }
         mCurrentUser.saveInBackground(new SaveCallback() {

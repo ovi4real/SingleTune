@@ -18,6 +18,7 @@
         android:layout_marginTop="96dp"
         android:focusable="true"
         android:hint="@string/username_hint"
+        android:singleLine="true"
         flatui:textColor="light"
         flatui:theme="Sand" />
 
@@ -29,6 +30,7 @@
         android:ems="10"
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
+        android:singleLine="true"
         flatui:textColor="light"
         flatui:theme="Sand" />
 

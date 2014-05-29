@@ -23,11 +23,11 @@ public class SingleTuneApplication extends Application {
         Parse.initialize(this, "rvPIzES8Mg0ChzNaZtrJ6udORV3ggajrjUlZMZ8e", "4WtUhM0JDyW1zmXlbjrW7HDbFthNtqBI2F44bvj2");
 //        ParseFacebookUtils.initialize("297125393789149");
         PushService.setDefaultPushCallback(this, NotificationsActivity.class);
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        if(currentUser != null){
-            // Associate the device with a user
-            LinkUserToInstallationHelper.LinkUserToInstallation.invoke();
-        }
         ParseInstallation.getCurrentInstallation().saveInBackground();
+    }
+    public static void UpdateParseInstallation(ParseUser user){
+        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+        installation.put(ParseConstants.KEY_USER_ID, user.getObjectId());
+        installation.saveInBackground();
     }
 }

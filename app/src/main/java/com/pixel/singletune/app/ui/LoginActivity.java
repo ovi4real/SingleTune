@@ -16,6 +16,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.pixel.singletune.app.R;
 
+import com.pixel.singletune.app.SingleTuneApplication;
 import com.pixel.singletune.app.utils.LinkUserToInstallationHelper;
 
 public class LoginActivity extends Activity {
@@ -74,7 +75,7 @@ public class LoginActivity extends Activity {
                                 // Success
 
                                 // Associate the device with a user
-                                LinkUserToInstallationHelper.LinkUserToInstallation.invoke();
+                                SingleTuneApplication.UpdateParseInstallation(user);
 
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

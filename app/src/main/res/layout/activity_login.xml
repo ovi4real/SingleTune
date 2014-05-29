@@ -19,6 +19,7 @@
         android:layout_marginTop="240dp"
         android:focusable="true"
         android:hint="@string/username_hint"
+        android:singleLine="true"
         flatui:textColor="darker"
         flatui:theme="Sand" />
 

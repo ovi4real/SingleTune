@@ -7,7 +7,7 @@ public final class ParseConstants {
 
     // Class name
     public static final String CLASS_MESSAGES = "Messages";
-    public static final String CLASS_SONGS = "Song";
+    public static final String CLASS_TUNES = "Tunes";
 
 
     //      Field names
@@ -23,4 +23,9 @@ public final class ParseConstants {
 
     public static final String TYPE_IMAGE = "image";
     public static final String TYPE_VIDEO = "video";
+    public static final String TYPE_VOICE_NOTE = "voiceNote";
+    public static final String TYPE_MP3 = "mp3";
+
+    public static final String KEY_TUNE_TITLE = "Title";
+    public static final String KEY_TUNE_DESC = "Description";
 }

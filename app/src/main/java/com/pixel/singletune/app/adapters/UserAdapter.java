@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by mrsmith on 4/28/14.
  */
-public class UserListAdapter extends ArrayAdapter<ParseUser> {
+public class UserAdapter extends ArrayAdapter<ParseUser> {
 
     private static final String TAG = "Test";
     protected Context mContext;
@@ -32,7 +32,7 @@ public class UserListAdapter extends ArrayAdapter<ParseUser> {
 
     protected List<ParseUser> mUsers;
 
-    public UserListAdapter(Context context, List<ParseUser> users){
+    public UserAdapter(Context context, List<ParseUser> users){
         super(context, R.layout.user_item, users);
         mContext = context;
         mParseUsers = users;
@@ -43,48 +43,60 @@ public class UserListAdapter extends ArrayAdapter<ParseUser> {
 
         ViewHolder holder;
 
-        LayoutInflater inflater = (LayoutInflater.from(mContext));
-        final View rowView = inflater.inflate(R.layout.user_item, parent, false);
-        ImageView avatar = (ImageView) rowView.findViewById(R.id.avatarImageView);
-        ImageView selectedAvatar = (ImageView) rowView.findViewById(R.id.selectedAvatarImageView);
-        TextView usernameLabel = (TextView) rowView.findViewById(R.id.usernameLabel);
+        if (convertView == null){
+            LayoutInflater inflater = (LayoutInflater.from(mContext));
+            convertView = inflater.inflate(R.layout.user_item, parent, false);
+            holder = new ViewHolder();
+            holder.avatar = (ImageView) convertView.findViewById(R.id.avatarImageView);
+            holder.selectedAvatar = (ImageView) convertView.findViewById(R.id.selectedAvatarImageView);
+            holder.usernameLabel = (TextView) convertView.findViewById(R.id.usernameLabel);
+            convertView.setTag(holder);
+        }
+        else {
+            holder = (ViewHolder)convertView.getTag();
+        }
 
-        final ParseUser user = mParseUsers.get(position);
+
+        ParseUser user = mParseUsers.get(position);
 
         String email = user.getEmail().toLowerCase();
 
         if(email.equals("")){
-            avatar.setImageResource(R.drawable.default_avatar);
+            holder.avatar.setImageResource(R.drawable.default_avatar);
         }
         else{
             String hash = MD5Util.md5Hex(email);
             String gravatarUrl = "http://www.gravatar.com/avatar/"+ hash + "?s=272&d=404";
-            Picasso.with(mContext).load(gravatarUrl).placeholder(R.drawable.default_avatar).into(avatar);
+            Picasso.with(mContext).load(gravatarUrl).placeholder(R.drawable.default_avatar).into(holder.avatar);
         }
-        usernameLabel.setText(user.getUsername());
+        holder.usernameLabel.setText(user.getUsername());
 
         GridView gridView = (GridView)parent;
         if(gridView.isItemChecked(position)){
-            selectedAvatar.setVisibility(View.VISIBLE);
+            holder.selectedAvatar.setVisibility(View.VISIBLE);
         }
         else {
 
-            selectedAvatar.setVisibility(View.INVISIBLE);
+            holder.selectedAvatar.setVisibility(View.INVISIBLE);
         }
 
 
-        return rowView                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
+//        return rowView;
+        return convertView;
     }
 
 
 
     //
     private static class ViewHolder{
+        ImageView avatar;
+        ImageView selectedAvatar;
+        TextView usernameLabel;
     }
 
     public void refill(List<ParseUser> users){
-        mUsers.clear();
-        mUsers.addAll(users);
+        mParseUsers.clear();
+        mParseUsers.addAll(users);
         notifyDataSetChanged();
     }
 }

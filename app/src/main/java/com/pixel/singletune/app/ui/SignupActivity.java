@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.cengalabs.flatui.FlatUI;
 import com.cengalabs.flatui.views.FlatButton;
@@ -15,6 +17,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.pixel.singletune.app.R;
 
+import com.pixel.singletune.app.SingleTuneApplication;
 import com.pixel.singletune.app.utils.LinkUserToInstallationHelper;
 
 
@@ -29,6 +32,9 @@ public class SignupActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_signup);
 
         FlatUI.setDefaultTheme(FlatUI.SAND);
@@ -83,12 +89,8 @@ public class SignupActivity extends Activity {
                             if (e == null) {
                                 // Success
 
-                                LinkUserToInstallationHelper.LinkUserToInstallation.invoke();
-
                                 // Associate the device with a user
-                                ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-                                installation.put("user",ParseUser.getCurrentUser());
-                                installation.saveInBackground();
+                                SingleTuneApplication.UpdateParseInstallation(ParseUser.getCurrentUser());
 
                                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

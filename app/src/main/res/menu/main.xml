@@ -8,9 +8,14 @@
         android:showAsAction="always"
         android:title="@string/search_title" />
     <item
+        android:id="@+id/add_tune"
+        android:showAsAction="always"
+        android:title="@string/addTuneMenu"
+        android:icon="@drawable/mr_ic_audio_vol"/>
+    <item
         android:id="@+id/action_profile"
         android:icon="@drawable/ic_action_user"
-        android:showAsAction="always"
+        android:showAsAction="never"
         android:title="@string/action_userProfile_title" />
     <item
         android:id="@+id/action_logout"
