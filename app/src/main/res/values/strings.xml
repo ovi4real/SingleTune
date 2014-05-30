@@ -59,6 +59,8 @@
     <string name="empty_title_error_title">Title?</string>
     <string name="success_message">Tune uploaded!</string>
     <string name="error_sending_message">Sorry, we couldn\'t upload your tune.</string>
+    <string name="callout_toast_message">Hey! %s</string>
+    <string name="hashtag_toast_message">Tags for tags: %s</string>
     <string-array name="tune_choice">
         <item>Record Voice Note</item>
         <item>Choose Voice Note</item>

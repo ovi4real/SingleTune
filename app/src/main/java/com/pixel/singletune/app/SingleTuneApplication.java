@@ -7,9 +7,8 @@ import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.PushService;
+import com.pixel.singletune.app.subClasses.Song;
 import com.pixel.singletune.app.ui.NotificationsActivity;
-
-import com.pixel.singletune.app.utils.LinkUserToInstallationHelper;
 
 /**
  * Created by smith on 3/30/14.

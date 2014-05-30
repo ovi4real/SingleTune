@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pixel.singletune.app.R;
+
 /**
  * Created by mrsmith on 5/30/14.
  */
@@ -35,7 +37,7 @@ public class CalloutLink extends ClickableSpan {
         String theWord = spanned.subSequence(start + 1, end).toString();
 
         // Todo: This is where you replace with Intent
-        Toast.makeText(mContext, String.format("Hey! %s", theWord), Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, String.format(mContext.getString(R.string.callout_toast_message), theWord), Toast.LENGTH_SHORT).show();
     }
 
 }

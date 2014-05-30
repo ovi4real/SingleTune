@@ -1,4 +1,4 @@
-package com.pixel.singletune.app;
+package com.pixel.singletune.app.subClasses;
 
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
