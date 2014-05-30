@@ -7,13 +7,38 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.2"
+    }
+    signingConfigs{
+        releaseConfig{
+            storeFile file('appkeys.jks');
+            storePassword('Pabopovib234.');
+            keyAlias "singletune";
+            keyPassword "Pabopovib234.";
+        }
     }
     buildTypes {
         release {
             runProguard false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.releaseConfig
+        }
+        debug{
+            debuggable true
+            packageNameSuffix ".debug"
+        }
+    }
+    productFlavors{
+        naijaFlavor{
+
+        }
+        ghanaFlavor{
+
+        }
+        saFlavor{
+
         }
     }
     sourceSets {
